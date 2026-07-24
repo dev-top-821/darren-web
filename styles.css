@@ -399,7 +399,7 @@ h2 {
   overflow: hidden;
   width: 100%;
   aspect-ratio: 16 / 9;
-  max-height: min(70vh, 520px);
+  max-height: min(72vh, 560px);
   background: #18211e;
   box-shadow: var(--shadow);
 }
@@ -474,13 +474,8 @@ h2 {
 
 @media (max-width: 640px) {
   .video-stage {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 9;
     max-height: none;
-  }
-
-  .collage-duo {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(2, minmax(0, 1fr));
   }
 }
 

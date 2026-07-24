@@ -185,76 +185,47 @@ function setupVideoPlayer() {
   if (!player || !playBtn) return;
 
   const defaultCaption = "Darren's Design - services & 40 years of experience";
+  const VIDEO_MAX_MS = 30000;
+  const SPEECH_RATE = 1;
+  let hardStopTimer = null;
 
-  const introScript = [
+  // ~70 words at normal rate ≈ under 30 seconds
+  const script = [
     {
-      text: "Welcome to Darren's Design - a full-service home design company with over forty years of experience.",
-      caption: "Over 40 years of experience",
+      text: "Welcome to Darren's Design, a full-service home design company with over forty years of experience.",
+      caption: "40+ years of experience",
       mode: "grid",
       images: [
         SERVICES[0].image,
-        SERVICES[1].image,
         SERVICES[3].image,
-        SERVICES[10].image,
-      ],
-    },
-    {
-      text: "We offer complete design and engineering services, including direct submission of plans to the city.",
-      caption: "Design & engineering · city submission",
-      mode: "duo",
-      images: [SERVICES[9].image, SERVICES[0].image],
-    },
-    {
-      text: "Our key advantage is fast turnaround. A complete set of plans, from start to city submission, typically takes just seven to ten days.",
-      caption: "Fast turnaround · 7-10 days",
-      mode: "single",
-      images: [SERVICES[0].image],
-    },
-  ];
-
-  const serviceScript = SERVICES.map((service, index) => {
-    const next = SERVICES[(index + 1) % SERVICES.length];
-    const modes = ["single", "duo", "grid"];
-    const mode = modes[index % 3];
-    let images = [service.image];
-    if (mode === "duo") images = [service.image, next.image];
-    if (mode === "grid") {
-      images = [
-        service.image,
-        next.image,
-        SERVICES[(index + 2) % SERVICES.length].image,
-        SERVICES[(index + 3) % SERVICES.length].image,
-      ];
-    }
-    return {
-      text: service.voice,
-      caption: service.title,
-      mode,
-      images,
-    };
-  });
-
-  const closingScript = [
-    {
-      text: "From new homes and additions to ADUs, framing, and engineering - Darren's Design delivers clear, buildable plans you can trust.",
-      caption: "Complete residential design services",
-      mode: "grid",
-      images: [
-        SERVICES[0].image,
-        SERVICES[2].image,
         SERVICES[7].image,
         SERVICES[10].image,
       ],
     },
+    {
+      text: "We provide design and engineering, including direct submission of plans to the city. Complete plans typically take just seven to ten days.",
+      caption: "Plans ready in 7-10 days",
+      mode: "duo",
+      images: [SERVICES[9].image, SERVICES[4].image],
+    },
+    {
+      text: "From new homes and additions to remodels, decks, foundations, ADUs, framing, and engineering - clear plans you can trust.",
+      caption: "Full range of residential services",
+      mode: "grid",
+      images: [
+        SERVICES[1].image,
+        SERVICES[2].image,
+        SERVICES[5].image,
+        SERVICES[8].image,
+      ],
+    },
   ];
-
-  const script = [...introScript, ...serviceScript, ...closingScript];
 
   let playing = false;
   let utteranceIndex = 0;
   let progressTimer = null;
   let startedAt = 0;
-  const estimatedDurationMs = 95000;
+  const estimatedDurationMs = VIDEO_MAX_MS;
 
   const supportsSpeech =
     "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
@@ -300,10 +271,20 @@ function setupVideoPlayer() {
       const slots = [collageG1, collageG2, collageG3, collageG4];
       slots.forEach((slot, i) => {
         if (!slot) return;
-        const src = images[i] || images[i % images.length] || SERVICES[i % SERVICES.length].image;
+        const src =
+          images[i] ||
+          images[i % images.length] ||
+          SERVICES[i % SERVICES.length].image;
         slot.src = src;
         slot.loading = "eager";
       });
+    }
+  }
+
+  function clearHardStop() {
+    if (hardStopTimer) {
+      clearTimeout(hardStopTimer);
+      hardStopTimer = null;
     }
   }
 
@@ -314,7 +295,7 @@ function setupVideoPlayer() {
       const ratio = Math.min(1, (Date.now() - startedAt) / estimatedDurationMs);
       if (progressBar) progressBar.style.width = `${ratio * 100}%`;
       if (ratio >= 1) clearInterval(progressTimer);
-    }, 120);
+    }, 100);
   }
 
   function stopProgress(complete) {
@@ -326,6 +307,7 @@ function setupVideoPlayer() {
   function resetPlayer() {
     playing = false;
     utteranceIndex = 0;
+    clearHardStop();
     player.classList.remove("is-playing");
     if (controls) controls.setAttribute("aria-hidden", "true");
     playBtn.querySelector(".play-label").textContent = "Play Video";
@@ -337,7 +319,10 @@ function setupVideoPlayer() {
   }
 
   function finishPlayer() {
+    if (!playing && utteranceIndex === 0) return;
     playing = false;
+    clearHardStop();
+    if (supportsSpeech) window.speechSynthesis.cancel();
     player.classList.remove("is-playing");
     if (controls) controls.setAttribute("aria-hidden", "true");
     playBtn.querySelector(".play-label").textContent = "Play Again";
@@ -348,7 +333,15 @@ function setupVideoPlayer() {
   }
 
   function speakNext() {
-    if (!playing || utteranceIndex >= script.length) {
+    if (!playing) return;
+
+    if (utteranceIndex >= script.length) {
+      finishPlayer();
+      return;
+    }
+
+    // Hard stop if we hit the 30-second ceiling mid-script
+    if (Date.now() - startedAt >= VIDEO_MAX_MS) {
       finishPlayer();
       return;
     }
@@ -359,24 +352,24 @@ function setupVideoPlayer() {
 
     if (!supportsSpeech) {
       utteranceIndex += 1;
-      window.setTimeout(speakNext, 4200);
+      window.setTimeout(speakNext, 7500);
       return;
     }
 
     const utterance = new SpeechSynthesisUtterance(part.text);
     const voice = pickVoice();
     if (voice) utterance.voice = voice;
-    utterance.rate = 0.96;
+    utterance.rate = SPEECH_RATE;
     utterance.pitch = 1;
     utterance.lang = voice?.lang || "en-US";
 
     utterance.onend = () => {
       utteranceIndex += 1;
-      window.setTimeout(speakNext, 280);
+      window.setTimeout(speakNext, 200);
     };
     utterance.onerror = () => {
       utteranceIndex += 1;
-      window.setTimeout(speakNext, 280);
+      window.setTimeout(speakNext, 200);
     };
 
     window.speechSynthesis.speak(utterance);
@@ -392,6 +385,10 @@ function setupVideoPlayer() {
     player.classList.add("is-playing");
     if (controls) controls.setAttribute("aria-hidden", "false");
     startProgress();
+    clearHardStop();
+    hardStopTimer = window.setTimeout(() => {
+      if (playing) finishPlayer();
+    }, VIDEO_MAX_MS);
     speakNext();
   }
 

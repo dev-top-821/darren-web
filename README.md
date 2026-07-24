@@ -36,9 +36,45 @@ This is a static site. The code is already on GitHub - deploy it as a **Static S
 
 You'll get a URL like `https://darren-web.onrender.com`.
 
-### Custom domain (optional / GoDaddy)
+## Connect a GoDaddy domain to Render
 
-In Render → your site → **Settings** → **Custom Domains**, add the domain, then add the DNS records Render shows in GoDaddy.
+### 1. Add the domain in Render
+
+1. Open your static site in the [Render Dashboard](https://dashboard.render.com).
+2. Go to **Settings** → **Custom Domains**.
+3. Click **Add Custom Domain**.
+4. Add both (recommended):
+   - `yourdomain.com`
+   - `www.yourdomain.com`
+5. Render will show the DNS records to create. Keep that page open.
+
+### 2. Update DNS in GoDaddy
+
+1. Sign in at [GoDaddy](https://dcc.godaddy.com/).
+2. Open your domain → **DNS** → **DNS Records**.
+3. Remove old conflicting records for `@` and `www` (old A / CNAME / forwarding) if they point elsewhere.
+4. Add what Render shows. Typical setup:
+
+| Type | Name/Host | Value | TTL |
+| --- | --- | --- | --- |
+| **A** | `@` | `216.24.57.1` (or the IP Render shows) | 1 Hour |
+| **CNAME** | `www` | `your-service.onrender.com` | 1 Hour |
+
+5. Save.
+
+Also remove any **AAAA** records for `@` / `www` if present - they can break SSL.
+
+### 3. Wait for SSL
+
+- DNS can take a few minutes to a few hours.
+- Back in Render, the domain status should move to **Verified** / **Certificate issued**.
+- Visit `https://yourdomain.com` and `https://www.yourdomain.com`.
+
+### Tips
+
+- Prefer both apex + `www` in Render so either URL works.
+- If GoDaddy has **Domain Forwarding** enabled to another site, turn it off or it can fight the DNS setup.
+- If Render still says DNS not configured, double-check the Host and Value match **exactly** what Render listed.
 
 You can also deploy with **New +** → **Blueprint** using the included `render.yaml`.
 
