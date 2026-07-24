@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Darren's Design - Home Design & Engineering</title>
+    <meta
+      name="description"
+      content="Full-service home design and engineering with over 40 years of experience. Complete plans from concept to city submission in 7-10 days."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Sora:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="logo" href="#top">
+        <img
+          class="logo-mark"
+          src="assets/images/logo.svg"
+          alt="Darren's Design"
+          width="44"
+          height="44"
+        />
+        <span class="logo-text">
+          <span class="logo-name">Darren's Design</span>
+          <span class="logo-tag">Design &amp; Engineering</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="header-cta" href="#contact">Get a Quote</a>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-label="Darren's Design">
+        <div class="hero-media" aria-hidden="true">
+          <img
+            src="assets/images/hero.jpg"
+            alt=""
+            width="2000"
+            height="1333"
+          />
+          <div class="hero-wash"></div>
+        </div>
+        <div class="hero-content">
+          <p class="brand">Darren's Design</p>
+          <h1>Home design &amp; engineering, done right.</h1>
+          <p class="hero-lead">
+            Complete plans from concept to city submission - built on over 40
+            years of experience.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#video">Watch Our Story</a>
+            <a class="btn btn-ghost" href="#services">View Services</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="video-section" id="video" aria-labelledby="video-heading">
+        <div class="section-inner">
+          <div class="section-intro">
+            <p class="eyebrow">Company Overview</p>
+            <h2 id="video-heading">See our services in one short video</h2>
+            <p>
+              A simple collage of the same project photos shown below - with a
+              short voiceover on Darren's Design, our experience, and every
+              service we offer.
+            </p>
+          </div>
+
+          <div class="video-player" id="videoPlayer">
+            <div class="video-stage">
+              <div class="video-frame" id="videoFrame" aria-hidden="true">
+                <div class="collage collage-single is-active" data-mode="single">
+                  <img id="collageMain" src="assets/images/new-home.jpg" alt="" />
+                </div>
+                <div class="collage collage-duo" data-mode="duo">
+                  <img id="collageLeft" src="assets/images/additions.jpg" alt="" />
+                  <img id="collageRight" src="assets/images/remodels.jpg" alt="" />
+                </div>
+                <div class="collage collage-grid" data-mode="grid">
+                  <img id="collageG1" src="assets/images/decks.jpg" alt="" />
+                  <img id="collageG2" src="assets/images/foundation.jpg" alt="" />
+                  <img id="collageG3" src="assets/images/framing.jpg" alt="" />
+                  <img id="collageG4" src="assets/images/adu.jpg" alt="" />
+                </div>
+              </div>
+              <div class="video-overlay">
+                <div class="video-idle">
+                  <p class="video-caption video-caption-idle" id="videoCaptionIdle">
+                    Darren's Design - services &amp; 40 years of experience
+                  </p>
+                  <button
+                    class="play-btn"
+                    id="playVideo"
+                    type="button"
+                    aria-label="Play introduction video"
+                  >
+                    <span class="play-pulse" aria-hidden="true"></span>
+                    <span class="play-pulse play-pulse-delay" aria-hidden="true"></span>
+                    <span class="play-core" aria-hidden="true">
+                      <svg class="icon-play" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M8.5 6.8v10.4c0 .7.8 1.1 1.4.7l8-5.2c.5-.4.5-1.1 0-1.4l-8-5.2c-.6-.4-1.4 0-1.4.7Z" fill="currentColor"/>
+                      </svg>
+                    </span>
+                    <span class="play-label">Play Video</span>
+                  </button>
+                </div>
+
+                <div class="video-controls" aria-hidden="true">
+                  <p class="video-caption" id="videoCaption">
+                    Darren's Design - services &amp; 40 years of experience
+                  </p>
+                  <button
+                    class="stop-btn"
+                    id="stopVideo"
+                    type="button"
+                    aria-label="Stop introduction video"
+                  >
+                    <span class="stop-icon" aria-hidden="true"></span>
+                    <span>Stop</span>
+                  </button>
+                </div>
+              </div>
+              <div class="video-progress" aria-hidden="true">
+                <div class="video-progress-bar" id="progressBar"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="about-section" id="about" aria-labelledby="about-heading">
+        <div class="section-inner about-grid">
+          <div class="about-copy">
+            <p class="eyebrow">About the Company</p>
+            <h2 id="about-heading">Design and engineering under one roof</h2>
+            <p>
+              Darren's Design is a full-service home design company with over
+              <strong>40 years</strong> of experience. We offer complete design
+              and engineering services, including direct submission of plans to
+              the city.
+            </p>
+            <p>
+              From first sketches to stamped drawings ready for permit, we guide
+              every project with clarity, accuracy, and care for how people
+              actually live in their homes.
+            </p>
+          </div>
+          <aside class="differentiator" aria-labelledby="diff-heading">
+            <p class="eyebrow">Key Differentiator</p>
+            <h3 id="diff-heading">Fast turnaround</h3>
+            <p class="diff-stat">7-10 <span>days</span></p>
+            <p>
+              A complete set of plans, from start to city submission, typically
+              takes just <strong>7 to 10 days</strong>.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="services-section" id="services" aria-labelledby="services-heading">
+        <div class="section-inner">
+          <div class="section-intro">
+            <p class="eyebrow">Services Offered</p>
+            <h2 id="services-heading">Everything your project needs</h2>
+            <p>
+              Each service below uses a representative photo of that project
+              type - the same images featured in the overview video.
+            </p>
+          </div>
+
+          <ul class="services-list" id="servicesList">
+            <!-- Populated from shared service data in script.js -->
+          </ul>
+        </div>
+      </section>
+
+      <section class="contact-section" id="contact" aria-labelledby="contact-heading">
+        <div class="section-inner contact-panel">
+          <div>
+            <p class="eyebrow">Start Your Project</p>
+            <h2 id="contact-heading">Ready for plans in 7-10 days?</h2>
+            <p>
+              Tell us about your project - new home, remodel, ADU, or structural
+              work - and we'll outline the next steps.
+            </p>
+          </div>
+          <form class="contact-form" id="contactForm">
+            <label>
+              Name
+              <input type="text" name="name" autocomplete="name" required />
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" autocomplete="email" required />
+            </label>
+            <label>
+              Project type
+              <select name="project" id="projectSelect" required>
+                <option value="">Select a service</option>
+              </select>
+            </label>
+            <label>
+              Message
+              <textarea name="message" rows="4" required></textarea>
+            </label>
+            <button class="btn btn-primary" type="submit">Send Inquiry</button>
+            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div>
+          <p class="footer-brand">Darren's Design</p>
+          <p>Full-service home design &amp; engineering · 40+ years</p>
+        </div>
+        <p class="footer-meta">© <span id="year"></span> Darren's Design. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

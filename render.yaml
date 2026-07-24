@@ -1,0 +1,9 @@
+# Render Static Site
+# https://dashboard.render.com → New + → Static Site
+
+services:
+  - type: web
+    name: darrens-design
+    runtime: static
+    buildCommand: "echo no-build"
+    staticPublishPath: .
