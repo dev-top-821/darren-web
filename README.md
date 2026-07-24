@@ -2,6 +2,8 @@
 
 Simple, modern marketing site for **Darren's Design** - a full-service home design and engineering company.
 
+**Repository:** [github.com/dev-top-821/darren-web](https://github.com/dev-top-821/darren-web)
+
 ## What's included
 
 - Light architectural landing page
@@ -9,7 +11,7 @@ Simple, modern marketing site for **Darren's Design** - a full-service home desi
 - Services list with a representative photo beside each offering
 - Playable AI-style video: collage of those **same** service photos + voiceover
 - Local images in `assets/images/`
-- Contact inquiry form (front-end only)
+- Contact links for phone and email
 
 ## Preview locally
 
@@ -21,47 +23,38 @@ npx --yes serve .
 
 ## Deploy to Render
 
-This is a static site. Use a **Static Site** on [Render](https://render.com).
-
-### 1. Push to GitHub
-
-From `i:\Kyo\Darren` in PowerShell:
-
-```powershell
-git init
-git add .
-git commit -m "Initial Darren's Design site"
-```
-
-Create an empty repo on GitHub, then:
-
-```powershell
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
-git push -u origin main
-```
-
-### 2. Create Static Site on Render
+This is a static site. The code is already on GitHub - deploy it as a **Static Site** on [Render](https://render.com).
 
 1. Open [https://dashboard.render.com](https://dashboard.render.com) and sign in.
 2. Click **New +** → **Static Site**.
-3. Connect GitHub and select this repo.
+3. Connect GitHub and select **`dev-top-821/darren-web`**.
 4. Use these settings:
    - **Branch:** `main`
    - **Build Command:** leave blank, or `echo no-build`
    - **Publish Directory:** `.`
 5. Click **Create Static Site**.
 
-You’ll get a URL like `https://darrens-design.onrender.com`.
+You'll get a URL like `https://darren-web.onrender.com`.
 
-### 3. Custom domain (optional / GoDaddy)
+### Custom domain (optional / GoDaddy)
 
 In Render → your site → **Settings** → **Custom Domains**, add the domain, then add the DNS records Render shows in GoDaddy.
 
 You can also deploy with **New +** → **Blueprint** using the included `render.yaml`.
 
+## Project structure
+
+```
+darren-web/
+├── index.html
+├── styles.css
+├── script.js
+├── render.yaml
+└── assets/images/
+```
+
 ## Notes
 
 - Service images live in `assets/images/` and are reused in the overview video collage.
 - The intro video uses the browser Speech Synthesis API - enable sound; Chrome/Edge work best.
-- Contact form is front-end only until wired to email (Formspree, Getform, etc.).
+- Contact: tap **1-510-600-1134** to call, or **darrensdesign01@gmail.com** to open mail.

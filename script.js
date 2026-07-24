@@ -4,7 +4,7 @@ const SERVICES = [
     id: "new-home",
     title: "New home design",
     image: "assets/images/new-home.jpg",
-    alt: "Modern new home exterior",
+    alt: "Completed new single-family home exterior",
     description:
       "Custom residential plans tailored to your lot, lifestyle, and local building requirements.",
     voice:
@@ -14,7 +14,7 @@ const SERVICES = [
     id: "additions",
     title: "Home additions",
     image: "assets/images/additions.jpg",
-    alt: "Home addition living space",
+    alt: "Home addition wing attached to an existing house",
     description:
       "Expand living space with additions that integrate cleanly with your existing structure.",
     voice:
@@ -24,7 +24,7 @@ const SERVICES = [
     id: "remodels",
     title: "Remodels",
     image: "assets/images/remodels.jpg",
-    alt: "Remodeled modern interior",
+    alt: "Remodeled modern kitchen interior",
     description:
       "Thoughtful remodel plans that refresh function and flow while respecting your home's bones.",
     voice:
@@ -34,7 +34,7 @@ const SERVICES = [
     id: "decks",
     title: "Decks",
     image: "assets/images/decks.jpg",
-    alt: "Outdoor deck overlooking landscape",
+    alt: "Wooden backyard deck with railing",
     description:
       "Durable, code-ready deck designs for entertaining, outdoor living, and long-term use.",
     voice: "Decks - durable, code-ready designs for outdoor living.",
@@ -43,7 +43,7 @@ const SERVICES = [
     id: "foundation",
     title: "Foundation upgrade plans",
     image: "assets/images/foundation.jpg",
-    alt: "Foundation and structural construction",
+    alt: "Workers pouring and leveling a concrete foundation",
     description:
       "Structural foundation plans to strengthen, repair, or upgrade for safer performance.",
     voice: "Foundation upgrade plans to strengthen and protect your home.",
@@ -52,7 +52,7 @@ const SERVICES = [
     id: "tenant",
     title: "Tenant improvements",
     image: "assets/images/tenant.jpg",
-    alt: "Commercial tenant improvement space",
+    alt: "Workers installing lighting during a tenant improvement remodel",
     description:
       "Efficient TI packages that help spaces open on schedule and meet landlord and city standards.",
     voice:
@@ -62,7 +62,7 @@ const SERVICES = [
     id: "retaining-wall",
     title: "Retaining walls",
     image: "assets/images/retaining-wall.jpg",
-    alt: "Retaining wall and landscaped grade",
+    alt: "Stone and concrete retaining wall on a hillside",
     description:
       "Engineered retaining wall plans that manage grade, drainage, and site stability.",
     voice: "Retaining walls engineered for grade, drainage, and site stability.",
@@ -71,7 +71,7 @@ const SERVICES = [
     id: "framing",
     title: "New framing layouts",
     image: "assets/images/framing.jpg",
-    alt: "Wood framing layout on construction site",
+    alt: "Wood house framing under construction",
     description:
       "Clear framing layouts builders can trust - accurate, buildable, and ready for the field.",
     voice: "New framing layouts that builders can trust in the field.",
@@ -80,7 +80,7 @@ const SERVICES = [
     id: "roof-framing",
     title: "New roof framing layouts",
     image: "assets/images/roof-framing.jpg",
-    alt: "Roof structure and architectural lines",
+    alt: "Wooden roof trusses and roof framing",
     description:
       "Roof framing plans that balance structure, drainage, and the look you want from the curb.",
     voice: "New roof framing layouts for strength, drainage, and curb appeal.",
@@ -89,7 +89,7 @@ const SERVICES = [
     id: "engineering",
     title: "Engineering services",
     image: "assets/images/engineering.jpg",
-    alt: "Engineering drawings and blueprints",
+    alt: "Structural engineering blueprints and plans on a desk",
     description:
       "Structural engineering support coordinated with design so drawings move smoothly to approval.",
     voice:
@@ -99,7 +99,7 @@ const SERVICES = [
     id: "adu",
     title: "ADUs, Junior ADUs & Efficiency Units",
     image: "assets/images/adu.jpg",
-    alt: "Accessory dwelling unit exterior",
+    alt: "Backyard accessory dwelling unit cottage",
     description:
       "Accessory dwelling and efficiency unit plans designed for code compliance and rental-ready living.",
     voice:
@@ -112,7 +112,6 @@ const SERVICES = [
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
   renderServices();
-  populateProjectSelect();
 
   const header = document.querySelector(".site-header");
   const onScroll = () => {
@@ -123,20 +122,6 @@ const SERVICES = [
   window.addEventListener("scroll", onScroll, { passive: true });
 
   observeServiceItems();
-
-  const form = document.getElementById("contactForm");
-  const formStatus = document.getElementById("formStatus");
-  if (form) {
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const data = new FormData(form);
-      const name = String(data.get("name") || "").trim();
-      if (formStatus) {
-        formStatus.textContent = `Thanks, ${name || "there"}. Your inquiry is ready - we'll follow up soon.`;
-      }
-      form.reset();
-    });
-  }
 
   setupVideoPlayer();
 })();
@@ -157,23 +142,6 @@ function renderServices() {
       </div>
     </li>`
   ).join("");
-}
-
-function populateProjectSelect() {
-  const select = document.getElementById("projectSelect");
-  if (!select) return;
-
-  SERVICES.forEach((service) => {
-    const option = document.createElement("option");
-    option.value = service.title;
-    option.textContent = service.title;
-    select.appendChild(option);
-  });
-
-  const other = document.createElement("option");
-  other.value = "Other";
-  other.textContent = "Other";
-  select.appendChild(other);
 }
 
 function observeServiceItems() {

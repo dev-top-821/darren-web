@@ -186,36 +186,27 @@
 
       <section class="contact-section" id="contact" aria-labelledby="contact-heading">
         <div class="section-inner contact-panel">
-          <div>
+          <div class="contact-copy">
             <p class="eyebrow">Start Your Project</p>
             <h2 id="contact-heading">Ready for plans in 7-10 days?</h2>
             <p>
-              Tell us about your project - new home, remodel, ADU, or structural
-              work - and we'll outline the next steps.
+              Call or email Darren's Design to talk through your project - new
+              home, remodel, ADU, or structural work.
             </p>
           </div>
-          <form class="contact-form" id="contactForm">
-            <label>
-              Name
-              <input type="text" name="name" autocomplete="name" required />
-            </label>
-            <label>
-              Email
-              <input type="email" name="email" autocomplete="email" required />
-            </label>
-            <label>
-              Project type
-              <select name="project" id="projectSelect" required>
-                <option value="">Select a service</option>
-              </select>
-            </label>
-            <label>
-              Message
-              <textarea name="message" rows="4" required></textarea>
-            </label>
-            <button class="btn btn-primary" type="submit">Send Inquiry</button>
-            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-          </form>
+          <div class="contact-actions">
+            <a class="contact-action contact-action-phone" href="tel:+15106001134">
+              <span class="contact-action-label">Call</span>
+              <span class="contact-action-value">1-510-600-1134</span>
+            </a>
+            <a
+              class="contact-action contact-action-email"
+              href="mailto:darrensdesign01@gmail.com?subject=Project%20inquiry%20-%20Darren%27s%20Design"
+            >
+              <span class="contact-action-label">Email</span>
+              <span class="contact-action-value">darrensdesign01@gmail.com</span>
+            </a>
+          </div>
         </div>
       </section>
     </main>
@@ -225,6 +216,11 @@
         <div>
           <p class="footer-brand">Darren's Design</p>
           <p>Full-service home design &amp; engineering · 40+ years</p>
+          <p class="footer-contact">
+            <a href="tel:+15106001134">1-510-600-1134</a>
+            <span aria-hidden="true"> · </span>
+            <a href="mailto:darrensdesign01@gmail.com">darrensdesign01@gmail.com</a>
+          </p>
         </div>
         <p class="footer-meta">© <span id="year"></span> Darren's Design. All rights reserved.</p>
       </div>
