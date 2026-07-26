@@ -103,7 +103,7 @@ const SERVICES = [
     description:
       "Accessory dwelling and efficiency unit plans designed for code compliance and rental-ready living.",
     voice:
-      "ADUs, Junior ADUs, and Efficiency Units designed for code compliance and rental-ready living.",
+      "A D U's, Junior A D U's, and Efficiency Units designed for code compliance and rental-ready living.",
   },
 ];
 
@@ -209,7 +209,7 @@ function setupVideoPlayer() {
       images: [SERVICES[9].image, SERVICES[4].image],
     },
     {
-      text: "From new homes and additions to remodels, decks, foundations, ADUs, framing, and engineering - clear plans you can trust.",
+      text: "From new homes and additions to remodels, decks, foundations, A D U's, framing, and engineering - clear plans you can trust.",
       caption: "Full range of residential services",
       mode: "grid",
       images: [
